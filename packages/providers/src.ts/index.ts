@@ -30,6 +30,7 @@ import { StaticJsonRpcProvider, UrlJsonRpcProvider } from "./url-json-rpc-provid
 import { Web3Provider } from "./web3-provider";
 import { WebSocketProvider } from "./websocket-provider";
 import { ExternalProvider, JsonRpcFetchFunc } from "./web3-provider";
+import { PocketGatewayProvider } from "./pocket-gateway-provider"
 
 import { Formatter } from "./formatter";
 
@@ -79,6 +80,7 @@ function getDefaultProvider(network?: Network | string, options?: any): BaseProv
         JsonRpcProvider,
         NodesmithProvider,
         Web3Provider,
+        PocketGatewayProvider,
 
         IpcProvider,
     }, options);
@@ -111,6 +113,7 @@ export {
     StaticJsonRpcProvider,
     Web3Provider,
     WebSocketProvider,
+    PocketGatewayProvider,
 
     IpcProvider,
 

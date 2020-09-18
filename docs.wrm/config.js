@@ -185,6 +185,7 @@ module.exports = {
       "link-metamask": { name: "Metamask", url: "https:/\/metamask.io/" },
       "link-otto": "https:/\/github.com/robertkrimen/otto",
       "link-parity": { name: "Parity", url: "https:/\/www.parity.io" },
+      "link-pocket": { name: "Pocket Network", url: "https:/\/pokt.network" },
       "link-react-native": { name: "React Native", url: "https:/\/reactnative.dev" },
       "link-rtd": "https:/\/github.com/readthedocs/sphinx_rtd_theme",
       "link-semver": { name: "semver", url: "https:/\/semver.org" },
@@ -195,6 +196,7 @@ module.exports = {
       "link-etherscan-signup": "https:/\/etherscan.io/apis",
       "link-etherscan-ratelimit": "https:/\/info.etherscan.com/api-return-errors/",
       "link-infura-signup": "https:/\/infura.io/register",
+      "link-pocket-gateway": { name: "Pocket Gateway", url: "https:/\/pokt.network/pocket-gateway-ethereum-mainnet/"},
 
       "link-json-rpc": "https:/\/github.com/ethereum/wiki/wiki/JSON-RPC",
       "link-web3-send": "https:/\/github.com/ethereum/web3.js/blob/1.x/packages/web3-providers-http/types/index.d.ts#L57",

@@ -81,7 +81,7 @@ const signer = provider.getSigner()
 ```javascript
 // Look up the current block number
 provider.getBlockNumber()
-// { Promise: 10819010 }
+// { Promise: 10883306 }
 
 // Get the balance of an account (by address or ENS name, if supported by network)
 balance = await provider.getBalance("ethers.eth")
@@ -149,11 +149,11 @@ daiContract.symbol()
 
 // Get the balance of an address
 balance = await daiContract.balanceOf("ricmoo.firefly.eth")
-// { BigNumber: "11386855832278858351495" }
+// { BigNumber: "11434355832278858351495" }
 
 // Format the DAI for displaying to the user
 ethers.utils.formatUnits(balance, 18)
-// '11386.855832278858351495'
+// '11434.355832278858351495'
 ```
 
 ### State Changing Methods
@@ -308,7 +308,7 @@ Signing Messages
 // logging into a service, such as CryptoKitties,
 // pass the string in.
 signature = await signer.signMessage("Hello World");
-// '0x94fac815fc18f295c4860128d8960dfdb1d88acf891a48e345368f3f4d52c95e59d0f8b35d05d554905a39c63c11b66f61abf0211fcaba36bef5dfaf1ea5f1331c'
+// '0x40e5eeffe7abd0835f9ab98919bf982f590049bce18f2a0a503ff39d53724c21377db6b4303e5b8c03afad8038b88c65ffe12f5d97a434f211a14c5b14e0c4831c'
 
 //
 // A common case is also signing a hash, which is 32
@@ -325,6 +325,6 @@ messageBytes = ethers.utils.arrayify(message);
 
 // To sign a hash, you most often want to sign the bytes
 signature = await signer.signMessage(messageBytes)
-// '0xa77f9018a3ad3078056d529d5ccaca8796cdb5bc84e799d13b63a53646ab73f87f0895df7bbe2ee6016c95eb78a2e77013ab8f8d4855143d3567932cb5331e881c'
+// '0xa4a6943b3063213f3274790612a91c1b0e11195fd985bf575ada05f08b7da70a1c5fdb9f9e1643719c319573fc6bbf111cef75db7e0f41bdff4b18ddd14f1b631c'
 ```
 

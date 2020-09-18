@@ -164,20 +164,20 @@ Return a copy of *array* shuffled using [Fisher-Yates Shuffle](https://en.wikipe
 
 ```javascript
 utils.randomBytes(8)
-// Uint8Array [ 98, 93, 74, 126, 111, 146, 146, 3 ]
+// Uint8Array [ 168, 156, 99, 46, 210, 32, 243, 216 ]
 
 const data = [ 1, 2, 3, 4, 5, 6, 7 ];
 
 // Returns a new Array
 utils.shuffled(data);
 // [
-//   5,
-//   2,
-//   6,
-//   1,
 //   4,
 //   7,
-//   3
+//   2,
+//   6,
+//   3,
+//   1,
+//   5
 // ]
 
 // The Original is unscathed...

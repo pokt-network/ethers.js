@@ -10,6 +10,9 @@ Provider API Keys
 Etherscan
 ---------
 
+Pocket Gateway
+--------------
+
 INFURA
 ------
 
@@ -29,7 +32,8 @@ const network = "homestead";
 const provider = ethers.getDefaultProvider(network, {
     etherscan: YOUR_ETHERSCAN_API_KEY,
     infura: YOUR_INFURA_PROJECT_ID,
-    alchemy: YOUR_ALCHEMY_API_KEY
+    alchemy: YOUR_ALCHEMY_API_KEY,
+    pocket_gateway: YOUR_POCKET_GATEWAY_APPLICATION_ID
 });
 ```
 
