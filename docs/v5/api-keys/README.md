@@ -10,6 +10,9 @@ Provider API Keys
 Etherscan
 ---------
 
+Pocket Gateway
+--------------
+
 INFURA
 ------
 

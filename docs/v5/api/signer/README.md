@@ -273,7 +273,7 @@ walletMnemonic.publicKey
 walletMnemonic.mnemonic
 // {
 //   locale: 'en',
-//   path: 'm/44\'/60\'/0\'/0/0',
+//   path: "m/44'/60'/0'/0/0",
 //   phrase: 'announce room limb pattern dry unit scale effort smooth jazz weasel alcohol'
 // }
 
