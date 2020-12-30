@@ -9,37 +9,18 @@ const logger = new Logger(version);
 
 import { UrlJsonRpcProvider } from "./url-json-rpc-provider";
 
-const defaultApplicationId = "5f7f8547b90218002e9ce9dd";
+const defaultApplicationId = "5f3ab133f7ca96c59972ff51"
+const defaultLoadBalancer = "5f7c8e5edb07b3eabd388511"
 
-export class PocketProvider extends UrlJsonRpcProvider {
-    readonly applicationId: string;
-    readonly applicationSecretKey: string;
+enum EndpointType {
+    LoadBalancer = "LoadBalancer",
+    Application = "Application"
+}
 
+export class PocketGatewayProvider extends UrlJsonRpcProvider {
+    
     static getApiKey(apiKey: any): any {
-        const apiKeyObj: { applicationId: string, applicationSecretKey: string } = {
-            applicationId: defaultApplicationId,
-            applicationSecretKey: null
-        };
-
-        if (apiKey == null) { return apiKeyObj; }
-
-        // Parse applicationId and applicationSecretKey
-        if (typeof (apiKey) === "string") {
-            apiKeyObj.applicationId = apiKey;
-
-        } else if (apiKey.applicationSecretKey != null) {
-            logger.assertArgument((typeof (apiKey.applicationId) === "string"),
-                "applicationSecretKey requires an applicationId", "applicationId", apiKey.applicationId);
-            logger.assertArgument((typeof (apiKey.applicationSecretKey) === "string"),
-                "invalid applicationSecretKey", "applicationSecretKey", "[REDACTED]");
-
-            apiKeyObj.applicationId = apiKey.applicationId;
-            apiKeyObj.applicationSecretKey = apiKey.applicationSecretKey;
-
-        } else if (apiKey.applicationId) {
-            apiKeyObj.applicationId = apiKey.applicationId;
-        }
-
+        let apiKeyObj = PocketApiKeyObject.build(apiKey);
         return apiKeyObj;
     }
 
@@ -57,7 +38,7 @@ export class PocketProvider extends UrlJsonRpcProvider {
         }
 
         const connection: ConnectionInfo = {
-            url: (`https:/\/${ host }/v1/${ apiKey.applicationId }`),
+            url: PocketApiKeyObject.getUrl(apiKey, host),
         };
 
         // Initialize empty headers
@@ -74,5 +55,69 @@ export class PocketProvider extends UrlJsonRpcProvider {
 
     isCommunityResource(): boolean {
         return (this.applicationId === defaultApplicationId);
+    }
+}
+
+export class PocketApiKeyObject {
+    clientID: string = defaultLoadBalancer;
+    endpointType: string = EndpointType.LoadBalancer;
+    applicationSecretKey: string = null;
+    applicationOrigin: string = null;
+    applicationUserAgent: string = null;
+
+    static build(apiKey: any): PocketApiKeyObject {
+        if(apiKey == null)
+            return new PocketApiKeyObject();
+
+        var apiKeyObj = new PocketApiKeyObject();
+        
+        // Parse Origin
+        if (typeof (apiKey.applicationOrigin) === "string") {
+            apiKeyObj.applicationOrigin = apiKey.applicationOrigin;
+        }
+        // Parse User Agent
+        if (typeof (apiKey.applicationUserAgent) === "string") {
+            apiKeyObj.applicationUserAgent = apiKey.applicationUserAgent;
+        }
+
+        if (typeof (apiKey.endpointType) === "string") {
+            switch (apiKey.endpointType.toLowerCase()) {
+                case "application":
+                    apiKeyObj.endpointType = EndpointType.Application
+                    apiKeyObj.clientID = defaultApplicationId;
+                    break;
+                default:
+                    apiKeyObj.endpointType = EndpointType.LoadBalancer
+                    apiKeyObj.clientID = defaultLoadBalancer;
+                    break;
+            }
+        }
+
+        switch (true) {
+            case typeof (apiKey) === "string":
+                apiKeyObj.clientID = apiKey;
+                break;
+            case apiKey.applicationSecretKey != null:
+                logger.assertArgument((typeof (apiKey.clientID) === "string"), "applicationSecretKey requires an clientID", "clientID", apiKey.clientID);
+                logger.assertArgument((typeof (apiKey.applicationSecretKey) === "string"), "invalid applicationSecretKey", "applicationSecretKey", "[*********]");
+                apiKeyObj.clientID = apiKey.clientID;
+                apiKeyObj.applicationSecretKey = apiKey.applicationSecretKey;
+                break;
+            case apiKey.clientID:
+                apiKeyObj.clientID = apiKey;
+                break;
+        }
+
+        return apiKeyObj;
+    }
+    
+    static getUrl(apiKey: any, host: string): string {
+        var url: string = ("https:/" + "/" + host + "/v1/lb/" + apiKey.clientID)
+
+        if (typeof (apiKey.endpointType) === "string" && apiKey.endpointType.toLowerCase() === "application") {
+            url = ("https:/" + "/" + host + "/v1/" + apiKey.clientID)
+        }
+
+        return url
     }
 }
