@@ -15,6 +15,6 @@ import { Web3Provider } from "./web3-provider";
 import { WebSocketProvider } from "./websocket-provider";
 import { ExternalProvider, JsonRpcFetchFunc } from "./web3-provider";
 import { PocketGatewayProvider } from "./pocket-gateway-provider";
-import { Formatter } from "./formatter";
+import { CommunityResourcable, Formatter, isCommunityResourcable, isCommunityResource, showThrottleMessage } from "./formatter";
 declare function getDefaultProvider(network?: Network | string, options?: any): BaseProvider;
-export { Provider, BaseProvider, Resolver, UrlJsonRpcProvider, FallbackProvider, AlchemyProvider, CloudflareProvider, EtherscanProvider, InfuraProvider, JsonRpcProvider, NodesmithProvider, StaticJsonRpcProvider, Web3Provider, WebSocketProvider, PocketGatewayProvider, IpcProvider, JsonRpcSigner, getDefaultProvider, getNetwork, Formatter, Block, BlockTag, EventType, Filter, Log, Listener, TransactionReceipt, TransactionRequest, TransactionResponse, ExternalProvider, JsonRpcFetchFunc, Network, Networkish, EnsProvider, EnsResolver };
+export { Provider, BaseProvider, Resolver, UrlJsonRpcProvider, FallbackProvider, AlchemyProvider, AlchemyWebSocketProvider, CloudflareProvider, EtherscanProvider, InfuraProvider, InfuraWebSocketProvider, JsonRpcProvider, NodesmithProvider, StaticJsonRpcProvider, Web3Provider, WebSocketProvider, PocketGatewayProvider, IpcProvider, JsonRpcSigner, getDefaultProvider, getNetwork, isCommunityResource, isCommunityResourcable, showThrottleMessage, Formatter, Block, BlockTag, EventType, Filter, Log, Listener, TransactionReceipt, TransactionRequest, TransactionResponse, ExternalProvider, JsonRpcFetchFunc, Network, Networkish, EnsProvider, EnsResolver, CommunityResourcable };

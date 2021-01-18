@@ -14,7 +14,7 @@ import { StaticJsonRpcProvider, UrlJsonRpcProvider } from "./url-json-rpc-provid
 import { Web3Provider } from "./web3-provider";
 import { WebSocketProvider } from "./websocket-provider";
 import { PocketGatewayProvider } from "./pocket-gateway-provider";
-import { Formatter } from "./formatter";
+import { Formatter, isCommunityResourcable, isCommunityResource, showThrottleMessage } from "./formatter";
 import { Logger } from "@ethersproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
@@ -67,7 +67,7 @@ export {
 Provider, BaseProvider, Resolver, UrlJsonRpcProvider, 
 ///////////////////////
 // Concreate Providers
-FallbackProvider, AlchemyProvider, CloudflareProvider, EtherscanProvider, InfuraProvider, JsonRpcProvider, NodesmithProvider, StaticJsonRpcProvider, Web3Provider, WebSocketProvider, PocketGatewayProvider, IpcProvider, 
+FallbackProvider, AlchemyProvider, AlchemyWebSocketProvider, CloudflareProvider, EtherscanProvider, InfuraProvider, InfuraWebSocketProvider, JsonRpcProvider, NodesmithProvider, StaticJsonRpcProvider, Web3Provider, WebSocketProvider, PocketGatewayProvider, IpcProvider, 
 ///////////////////////
 // Signer
 JsonRpcSigner, 
